@@ -65,9 +65,8 @@ export const projetResolvers = {
 
   Projet: {
     id: (parent: any) => parent._id.toString(),
-    userId: (parent: any) => parent.userId.toString(),
-    status: (parent: any) => {
-      return mongooseToGraphql(parent.status);
-    },
+    userId: (parent: any) => (parent.userId ? parent.userId.toString() : null),
+    // Pas de transformation pour le status - Mongoose utilise déjà in_progress
+    status: (parent: any) => parent.status,
   },
 };

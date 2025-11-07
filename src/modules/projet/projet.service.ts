@@ -24,10 +24,9 @@ export class ProjetService {
   }
 
   async createProjet(userId: string, data: Partial<IProjet>): Promise<IProjet> {
-    const mappedData = transformEnumsForMongoose(data, ["status"]);
-
+    // Pas de transformation - GraphQL et Mongoose utilisent le même format
     const projet = await Projet.create({
-      ...mappedData,
+      ...data,
       userId,
     });
 
@@ -35,11 +34,10 @@ export class ProjetService {
   }
 
   async updateProjet(id: string, data: Partial<IProjet>): Promise<IProjet> {
-    const mappedData = transformEnumsForMongoose(data, ["status"]);
-
+    // Pas de transformation - GraphQL et Mongoose utilisent le même format
     const projet = await Projet.findByIdAndUpdate(
       id,
-      { $set: mappedData },
+      { $set: data },
       { new: true, runValidators: true }
     );
 

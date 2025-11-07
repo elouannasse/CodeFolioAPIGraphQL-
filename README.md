@@ -1,8 +1,10 @@
-# Portfolio GraphQL API
+# Portfolio GraphQL API with React Frontend
 
-A modern, scalable GraphQL API built with **Node.js (v22+)**, **TypeScript**, **Apollo Server**, and **MongoDB (v8+)** for managing a developer portfolio.
+A modern, full-stack portfolio application with a **GraphQL API backend** (Node.js, TypeScript, Apollo Server, MongoDB) and a **React frontend** (TypeScript, Vite, Apollo Client).
 
-##  Features
+## Features
+
+### Backend
 
 - ✅ **GraphQL API** with Apollo Server
 - ✅ **JWT Authentication** (Login/Logout)
@@ -21,21 +23,45 @@ A modern, scalable GraphQL API built with **Node.js (v22+)**, **TypeScript**, **
 - ✅ **Logging** with Winston
 - ✅ **Database Seeding**
 
-##  Requirements
+### Frontend
+
+- ✅ **React 18** with TypeScript
+- ✅ **Vite** for fast development and building
+- ✅ **Apollo Client** for GraphQL integration
+- ✅ **Pre-built components** for all data types
+- ✅ **Hot Module Replacement (HMR)**
+- ✅ **Path aliases** for clean imports
+- ✅ **Responsive design** with CSS
+
+## Requirements
 
 - **Node.js**: v22.0.0 or higher
 - **npm**: v10.0.0 or higher
 - **MongoDB**: v8.x (latest)
 
-##  Installation
+## Installation
 
-### 1. Install Dependencies
+### 1. Install Backend Dependencies
 
 ```powershell
 npm install
 ```
 
-### 2. Setup MongoDB
+### 2. Install Frontend Dependencies
+
+```powershell
+npm run client:install
+```
+
+Or manually:
+
+```powershell
+cd client
+npm install
+cd ..
+```
+
+### 3. Setup MongoDB
 
 **Option A: Local MongoDB**
 
@@ -78,27 +104,54 @@ npm run seed
 
 This creates an admin user with credentials from your `.env` file.
 
-##  Running the Project
+## Running the Project
 
-### Development Mode
+### Option 1: Run Backend and Frontend Together (Recommended)
+
+```powershell
+npm run dev:all
+```
+
+This will start:
+
+- **Backend** on http://localhost:4000 (GraphQL API)
+- **Frontend** on http://localhost:3000 (React App)
+
+### Option 2: Run Backend and Frontend Separately
+
+**Terminal 1 - Backend:**
 
 ```powershell
 npm run dev
 ```
 
-### Production Mode
+**Terminal 2 - Frontend:**
 
 ```powershell
-npm run build
+npm run dev:client
+```
+
+### Production Mode
+
+**Build both:**
+
+```powershell
+npm run build:all
+```
+
+**Start backend:**
+
+```powershell
 npm start
 ```
 
-The server will start at: **http://localhost:4000**
+The backend GraphQL API will be at: **http://localhost:4000/graphql**  
+The frontend React app will be at: **http://localhost:3000** (in dev mode)
 
 - GraphQL Playground: **http://localhost:4000/graphql**
 - Health Check: **http://localhost:4000/health**
 
-##  API Documentation
+## API Documentation
 
 ### Authentication
 
@@ -481,7 +534,7 @@ All **mutations** (Create/Update/Delete) require authentication via JWT token.
    Authorization: Bearer YOUR_JWT_TOKEN
    ```
 
-##  Project Structure
+## Project Structure
 
 ```
 CodeFolioAPIGraphQL/
@@ -576,26 +629,42 @@ CodeFolioAPIGraphQL/
 
 ## 📝 Scripts
 
-| Script          | Description                              |
-| --------------- | ---------------------------------------- |
-| `npm run dev`   | Start development server with hot reload |
-| `npm run build` | Build for production                     |
-| `npm start`     | Start production server                  |
-| `npm run seed`  | Seed database with admin user            |
-| `npm test`      | Run tests                                |
-| `npm run lint`  | Lint code                                |
+### Backend & Frontend
+
+| Script                   | Description                                |
+| ------------------------ | ------------------------------------------ |
+| `npm run dev:all`        | Run both backend and frontend concurrently |
+| `npm run build:all`      | Build both backend and frontend            |
+| `npm run client:install` | Install frontend dependencies              |
+
+### Backend Only
+
+| Script          | Description                      |
+| --------------- | -------------------------------- |
+| `npm run dev`   | Start backend development server |
+| `npm run build` | Build backend for production     |
+| `npm start`     | Start backend production server  |
+| `npm run seed`  | Seed database with admin user    |
+| `npm test`      | Run backend tests                |
+
+### Frontend Only
+
+| Script                 | Description                       |
+| ---------------------- | --------------------------------- |
+| `npm run dev:client`   | Start frontend development server |
+| `npm run build:client` | Build frontend for production     |
 
 ## 🛡️ Security Features
 
--  JWT Authentication
--  Password hashing with bcrypt
--  Helmet.js for HTTP headers
--  CORS configuration
--  Role-based access control (RBAC)
--  Input validation
--  Error handling
+- JWT Authentication
+- Password hashing with bcrypt
+- Helmet.js for HTTP headers
+- CORS configuration
+- Role-based access control (RBAC)
+- Input validation
+- Error handling
 
-##  Troubleshooting
+## Troubleshooting
 
 ### MongoDB Connection Error
 
@@ -621,14 +690,62 @@ Error: listen EADDRINUSE: address already in use :::4000
 
 **Solution**: Make sure to include `Bearer` prefix in Authorization header
 
-##  License
+## 🎨 Frontend React Application
+
+The project includes a modern React frontend with TypeScript, Vite, and Apollo Client.
+
+### Features
+
+- ✅ React 18 with TypeScript
+- ✅ Vite for fast development and building
+- ✅ Apollo Client integration with GraphQL backend
+- ✅ Pre-built components for Profils, Projets, Experiences, and Competences
+- ✅ Hot Module Replacement (HMR)
+- ✅ Path aliases for clean imports
+- ✅ Responsive design
+
+### Folder Structure
+
+```
+client/
+├── src/
+│   ├── components/       # React components
+│   ├── graphql/          # Apollo Client & queries
+│   ├── pages/            # Page components
+│   ├── context/          # React Context
+│   ├── App.tsx           # Main app component
+│   └── main.tsx          # Entry point
+├── public/               # Static assets
+├── index.html            # HTML entry
+├── vite.config.ts        # Vite configuration
+└── package.json          # Frontend dependencies
+```
+
+### Running the Frontend
+
+See the **Running the Project** section above. For detailed frontend setup and documentation, refer to:
+
+- **[FRONTEND_SETUP.md](./FRONTEND_SETUP.md)** - Complete frontend setup guide
+
+### GraphQL Queries
+
+The frontend includes pre-built queries for:
+
+- `GET_PROFILS` - Fetch all profiles
+- `GET_PROJETS` - Fetch all projects
+- `GET_EXPERIENCES` - Fetch all experiences
+- `GET_COMPETENCES` - Fetch all competences
+
+All queries are located in `client/src/graphql/queries.ts`.
+
+## License
 
 ISC
 
-##  Author
+## Author
 
 Portfolio GraphQL API
 
 ---
 
-**Built with  using Node.js 22+, TypeScript, Apollo Server, and MongoDB 8+**
+**Built with using Node.js 22+, TypeScript, Apollo Server, and MongoDB 8+**

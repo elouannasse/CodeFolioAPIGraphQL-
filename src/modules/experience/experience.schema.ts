@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export const experienceTypeDefs = gql`
   type Experience {
     id: ID!
-    userId: ID!
+    userId: ID
     company: String!
     position: String!
     description: String!

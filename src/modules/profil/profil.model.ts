@@ -15,7 +15,13 @@ export interface IProfil extends Document {
   avatar?: string;
   email: string;
   phone?: string;
-  location?: string;
+  address?: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
+  linkedin?: string;
+  github?: string;
+  website?: string;
   socials: ISocial[];
   resume?: string;
   createdAt: Date;
@@ -92,7 +98,31 @@ const ProfilSchema: Schema = new Schema(
       type: String,
       trim: true,
     },
-    location: {
+    address: {
+      type: String,
+      trim: true,
+    },
+    city: {
+      type: String,
+      trim: true,
+    },
+    postalCode: {
+      type: String,
+      trim: true,
+    },
+    country: {
+      type: String,
+      trim: true,
+    },
+    linkedin: {
+      type: String,
+      trim: true,
+    },
+    github: {
+      type: String,
+      trim: true,
+    },
+    website: {
       type: String,
       trim: true,
     },

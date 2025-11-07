@@ -69,7 +69,7 @@ export const experienceResolvers = {
 
   Experience: {
     id: (parent: any) => parent._id.toString(),
-    userId: (parent: any) => parent.userId.toString(),
+    userId: (parent: any) => (parent.userId ? parent.userId.toString() : null),
     employmentType: (parent: any) => {
       return mongooseToGraphql(parent.employmentType);
     },

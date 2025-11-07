@@ -69,7 +69,7 @@ export const competenceResolvers = {
 
   Competence: {
     id: (parent: any) => parent._id.toString(),
-    userId: (parent: any) => parent.userId.toString(),
+    userId: (parent: any) => (parent.userId ? parent.userId.toString() : null),
     category: (parent: any) => {
       return mongooseToGraphql(parent.category);
     },

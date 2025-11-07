@@ -2,40 +2,35 @@ import { gql } from "apollo-server-express";
 
 export const profilTypeDefs = gql`
   type Social {
-    platform: SocialPlatform!
+    platform: String!
     url: String!
     icon: String
   }
 
-  enum SocialPlatform {
-    github
-    linkedin
-    twitter
-    facebook
-    instagram
-    youtube
-    website
-    other
-  }
-
   type Profil {
     id: ID!
-    userId: ID!
+    userId: ID
     fullName: String!
     title: String!
     bio: String!
     avatar: String
     email: String!
     phone: String
-    location: String
-    socials: [Social!]!
+    address: String
+    city: String
+    postalCode: String
+    country: String
+    linkedin: String
+    github: String
+    website: String
+    socials: [Social!]
     resume: String
     createdAt: String!
     updatedAt: String!
   }
 
   input SocialInput {
-    platform: SocialPlatform!
+    platform: String!
     url: String!
     icon: String
   }
@@ -47,7 +42,13 @@ export const profilTypeDefs = gql`
     avatar: String
     email: String!
     phone: String
-    location: String
+    address: String
+    city: String
+    postalCode: String
+    country: String
+    linkedin: String
+    github: String
+    website: String
     socials: [SocialInput!]
     resume: String
   }
@@ -59,7 +60,13 @@ export const profilTypeDefs = gql`
     avatar: String
     email: String
     phone: String
-    location: String
+    address: String
+    city: String
+    postalCode: String
+    country: String
+    linkedin: String
+    github: String
+    website: String
     socials: [SocialInput!]
     resume: String
   }

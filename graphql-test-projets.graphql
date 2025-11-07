@@ -1,0 +1,168 @@
+# 📋 MUTATIONS GRAPHQL POUR CRÉER DES PROJETS DE TEST
+# Copiez-collez ces mutations dans GraphQL Playground (http://localhost:4000/graphql)
+
+# ⚠️ IMPORTANT: Vous devez être authentifié (avoir un token JWT dans les headers)
+# Headers HTTP requis:
+# {
+#   "Authorization": "Bearer VOTRE_TOKEN_JWT"
+# }
+
+# 🚀 PROJET 1 - Portfolio API (Featured)
+mutation CreateProject1 {
+  createProjet(
+    input: {
+      title: "Portfolio GraphQL API"
+      description: "API GraphQL complète pour gérer un portfolio professionnel avec authentification JWT, gestion de profils, projets, expériences et compétences."
+      technologies: [
+        "Node.js"
+        "TypeScript"
+        "GraphQL"
+        "MongoDB"
+        "Apollo Server"
+        "JWT"
+      ]
+      category: backend
+      status: in_progress
+      featured: true
+      startDate: "2025-10-01"
+      githubUrl: "https://github.com/username/portfolio-api"
+      demoUrl: "https://api.portfolio.com"
+    }
+  ) {
+    id
+    title
+    category
+    status
+    featured
+  }
+}
+
+# 💻 PROJET 2 - E-Commerce (Featured, Completed)
+mutation CreateProject2 {
+  createProjet(
+    input: {
+      title: "E-Commerce React"
+      description: "Application e-commerce moderne avec panier, paiement Stripe, gestion de stock et tableau de bord admin."
+      technologies: ["React", "Redux", "Tailwind CSS", "Stripe", "Firebase"]
+      category: fullstack
+      status: completed
+      featured: true
+      startDate: "2025-06-01"
+      endDate: "2025-09-15"
+      githubUrl: "https://github.com/username/ecommerce-app"
+      demoUrl: "https://shop-demo.netlify.app"
+      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800"
+    }
+  ) {
+    id
+    title
+    category
+    status
+    featured
+  }
+}
+
+# 📱 PROJET 3 - Mobile App
+mutation CreateProject3 {
+  createProjet(
+    input: {
+      title: "Task Manager Mobile"
+      description: "Application mobile de gestion de tâches avec synchronisation cloud, notifications push et mode hors-ligne."
+      technologies: [
+        "React Native"
+        "Expo"
+        "AsyncStorage"
+        "Push Notifications"
+      ]
+      category: mobile
+      status: completed
+      featured: false
+      startDate: "2025-03-01"
+      endDate: "2025-05-30"
+      githubUrl: "https://github.com/username/task-manager"
+    }
+  ) {
+    id
+    title
+    category
+    status
+  }
+}
+
+# 📊 PROJET 4 - Dashboard
+mutation CreateProject4 {
+  createProjet(
+    input: {
+      title: "Dashboard Analytics"
+      description: "Tableau de bord analytique avec graphiques interactifs, export PDF et filtres avancés."
+      technologies: ["Vue.js", "Chart.js", "D3.js", "Express", "PostgreSQL"]
+      category: web
+      status: in_progress
+      featured: false
+      startDate: "2025-09-01"
+      githubUrl: "https://github.com/username/analytics-dashboard"
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800"
+    }
+  ) {
+    id
+    title
+    category
+    status
+  }
+}
+
+# 💬 PROJET 5 - Chat App (Planned)
+mutation CreateProject5 {
+  createProjet(
+    input: {
+      title: "Chat App Real-time"
+      description: "Application de messagerie instantanée avec WebSockets, salons de discussion et partage de fichiers."
+      technologies: ["Socket.io", "Node.js", "React", "MongoDB", "AWS S3"]
+      category: fullstack
+      status: planned
+      featured: false
+      startDate: "2025-12-01"
+    }
+  ) {
+    id
+    title
+    category
+    status
+  }
+}
+
+# ========================================
+# 📖 QUERY POUR VÉRIFIER LES PROJETS
+# ========================================
+
+query GetAllProjects {
+  getProjets {
+    id
+    title
+    description
+    technologies
+    category
+    status
+    featured
+    startDate
+    endDate
+    githubUrl
+    demoUrl
+    image
+    createdAt
+  }
+}
+
+# ========================================
+# 🔍 QUERY POUR PROJETS FEATURED UNIQUEMENT
+# ========================================
+
+query GetFeaturedProjects {
+  getProjets(featured: true) {
+    id
+    title
+    category
+    status
+    featured
+  }
+}

@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export const competenceTypeDefs = gql`
   type Competence {
     id: ID!
-    userId: ID!
+    userId: ID
     name: String!
     category: CompetenceCategory!
     level: CompetenceLevel!

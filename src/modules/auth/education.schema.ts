@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export const educationTypeDefs = gql`
   type Education {
     id: ID!
-    userId: ID!
+    userId: ID
     institution: String!
     degree: String!
     fieldOfStudy: String!
